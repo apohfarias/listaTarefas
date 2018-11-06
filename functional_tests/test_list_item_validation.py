@@ -1,0 +1,86 @@
+from selenium.webdriver.common.keys import Keys
+from .base import FunctionalTest
+
+class ItemValidationTest(FunctionalTest):
+
+
+		
+	def test_cannot_add_empty_list_items(self):
+		# Edith acessa a página inicial e acidentalmente tenta submeter um item vazio na lista.
+		# Ela tecla Enter na caixa de entrada vazia
+		self.browser.get(self.live_server_url)
+		self.get_item_input_box().send_keys(Keys.ENTER)
+
+		#O nvegador intercepta a requisição e não carrega a página da lista
+		self.wait_for(lambda: self.browser.find_element_by_css_selector(
+				'#id_text:invalid'				
+		))
+
+		# Ela começa a digitar um texto para o novo item e o erro desaparece
+		self.get_item_input_box().send_keys('Comprar leite')
+		self.wait_for(lambda: self.browser.find_element_by_css_selector(
+			'#id_text:valid'				
+		))
+		#E ela pode submeter o item com sucesso
+		self.get_item_input_box().send_keys(Keys.ENTER)
+		self.wait_for_row_in_list_table('1: Comprar leite')
+
+		#De forma perversa, ela agora decide submeter um segundo item em branco na lista
+		self.get_item_input_box().send_keys(Keys.ENTER)
+
+		#Novamente o navegador não concordará
+		self.wait_for(lambda: self.browser.find_element_by_css_selector(
+			'#id_text:invalid'			
+		))
+
+		# E ela pode corrigir isso preenchendo o item com um texto
+		self.get_item_input_box().send_keys('Make tea')
+		self.wait_for(lambda: self.browser.find_element_by_css_selector(
+			'#id_text:valid'			
+		))
+		self.get_item_input_box().send_keys(Keys.ENTER)
+		self.wait_for_row_in_list_table('1: Comprar leite')
+		self.wait_for_row_in_list_table('2: Make tea')
+
+
+	def test_cannot_add_duplicate_items(self):
+		#Edite acessa a página inicial e começa uma nova lista
+		self.browser.get(self.live_server_url)
+		self.get_item_input_box().send_keys('Comprar café')
+		self.get_item_input_box().send_keys(Keys.ENTER)
+		self.wait_for_row_in_list_table('1: Comprar café')
+
+		#Ela tenta inserir um item duplicado
+		self.get_item_input_box().send_keys('Comprar café')
+		self.get_item_input_box().send_keys(Keys.ENTER)
+
+		#Ela vê uma mensagem de erro
+		self.wait_for(lambda: self.assertEqual(
+			self.get_error_element().text,
+			"Você já tem esse item na lista!"
+		))
+		
+	def test_error_messages_are_cleared_on_inpu(self):
+		#Edith inicia uma lista e provoca um erro de validação
+		self.browser.get(self.live_server_url)
+		self.get_item_input_box().send_keys('banter too thick')
+		self.get_item_input_box().send_keys(Keys.ENTER)
+		self.wait_for_row_in_list_table('1: banter too thick')
+		self.get_item_input_box().send_keys('banter too thick')
+		self.get_item_input_box().send_keys(Keys.ENTER)
+
+		self.wait_for(lambda: self.assertTrue(
+			self.browser.find_element_by_css_selector('.has-error').is_displayed()
+
+			))
+
+		#Ela começa a digitar na caixa de entrada para limpar o erro
+		self.get_item_input_box().send_keys('a')
+
+		#Ela fica satisfeita ao ver que a mensagem de erro desaparece
+		self.wait_for(lambda: self.assertFalse(
+			self.browser.find_element_by_css_selector('.has-error').is_displayed()
+
+			))
+
+#self.fail('Fim desse teste!')
