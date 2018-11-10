@@ -56,31 +56,31 @@ class ItemValidationTest(FunctionalTest):
 
 		#Ela vê uma mensagem de erro
 		self.wait_for(lambda: self.assertEqual(
-			self.get_error_element().text,
+			self.browser.find_element_by_css_selector('.has-error').text,
 			"Você já tem esse item na lista!"
 		))
 		
-	def test_error_messages_are_cleared_on_inpu(self):
-		#Edith inicia uma lista e provoca um erro de validação
-		self.browser.get(self.live_server_url)
-		self.get_item_input_box().send_keys('banter too thick')
-		self.get_item_input_box().send_keys(Keys.ENTER)
-		self.wait_for_row_in_list_table('1: banter too thick')
-		self.get_item_input_box().send_keys('banter too thick')
-		self.get_item_input_box().send_keys(Keys.ENTER)
+	# def test_error_messages_are_cleared_on_input(self):
+	# 	#Edith inicia uma lista e provoca um erro de validação
+	# 	self.browser.get(self.live_server_url)
+	# 	self.get_item_input_box().send_keys('banter too thick')
+	# 	self.get_item_input_box().send_keys(Keys.ENTER)
+	# 	self.wait_for_row_in_list_table('1: banter too thick')
+	# 	self.get_item_input_box().send_keys('banter too thick')
+	# 	self.get_item_input_box().send_keys(Keys.ENTER)
 
-		self.wait_for(lambda: self.assertTrue(
-			self.browser.find_element_by_css_selector('.has-error').is_displayed()
+	# 	self.wait_for(lambda: self.assertTrue(
+	# 		self.browser.find_element_by_css_selector('.has-error').is_displayed()
 
-			))
+	# 		))
 
-		#Ela começa a digitar na caixa de entrada para limpar o erro
-		self.get_item_input_box().send_keys('a')
+	# 	#Ela começa a digitar na caixa de entrada para limpar o erro
+	# 	self.get_item_input_box().send_keys('a')
 
-		#Ela fica satisfeita ao ver que a mensagem de erro desaparece
-		self.wait_for(lambda: self.assertFalse(
-			self.browser.find_element_by_css_selector('.has-error').is_displayed()
+	# 	#Ela fica satisfeita ao ver que a mensagem de erro desaparece
+	# 	self.wait_for(lambda: self.assertFalse(
+	# 		self.browser.find_element_by_css_selector('.has-error').is_displayed()
 
-			))
+	# 		))
 
 #self.fail('Fim desse teste!')
