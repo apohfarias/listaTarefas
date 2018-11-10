@@ -14,17 +14,17 @@ class LayoutAnStylingTest(FunctionalTest):
 		inputbox = self.get_item_input_box()
 		self.assertAlmostEqual(
 			inputbox.location['x'] + inputbox.size['width']/2,
-			348,
+			512,
 			delta=10
 		)
 
 		#Ela inicia uma nova lista e vê que a entrada está elegantemente centralizada aí também
-		inputbox.send_keys('testing')
+		inputbox.send_keys('testando')
 		inputbox.send_keys(Keys.ENTER)
-		self.wait_for_row_in_list_table('1: testing')
+		self.wait_for_row_in_list_table('1: testando')
 		inputbox = self.get_item_input_box()
 		self.assertAlmostEqual(
 			inputbox.location['x'] + inputbox.size['width']/2,
-			348,
+			512,
 			delta=10
 		)
