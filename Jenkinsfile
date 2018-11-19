@@ -10,7 +10,7 @@ pipeline {
         stage('CriarVirtualEnv') {
             steps {
                 sh '''
-                    bash -c "virtualenv venv_listaTarefas && source venv_listaTarefas/bin/activate"
+                    bash -c "python3.6 -m venv venv_listaTarefas && source venv_listaTarefas/bin/activate"
                 '''
 
             }
