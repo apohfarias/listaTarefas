@@ -25,7 +25,7 @@ pipeline {
         stage('TestarApp') {
             steps {
                 sh '''
-                    bash -c "source ${WORKSPACE}/venv_listaTarefas/bin/activate && python manage.py test lists && py.test --junitxml results.xml lists"
+                    bash -c "source ${WORKSPACE}/venv_listaTarefas/bin/activate && python manage.py test lists"
                 '''
             }
         }  
