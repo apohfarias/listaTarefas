@@ -43,7 +43,7 @@ class NewVisitorTest(FunctionalTest):
 		# A página é atualizada novamente e agora mostra os dois itens da lista dela
 		self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
 		self.wait_for_row_in_list_table('1: Buy peacock feathers')
-		# Satisfeito, ela volta a dormi
+		# Satisfeito, ela volta a dormir
 
 	def test_multiple_users_can_start_lists_at_different_urls(self):
 		# Edith inicia uma nova lista de tarefas
@@ -53,7 +53,7 @@ class NewVisitorTest(FunctionalTest):
 		inputbox.send_keys(Keys.ENTER)
 		self.wait_for_row_in_list_table('1: Buy peacock feathers')
 
-		# Ela percebe que sua lista tem um URL exclusiv
+		# Ela percebe que sua lista tem um URL exclusivo
 		edith_list_url = self.browser.current_url
 		self.assertRegex(edith_list_url, '/lists/.+')
 
