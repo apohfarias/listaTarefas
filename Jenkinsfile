@@ -30,7 +30,7 @@ pipeline {
             }
         }  
          stage('SonarQube analysis') { 
-            withSonarQubeEnv('Sonar') { 
+            steps withSonarQubeEnv('Sonar') { 
             sh " cd  $project_path; mvn sonar:sonar -Dsonar.host.url=http://172.16.91.190:9000 -Dsonar.projectKey=listatarefa -Dsonar.projectName=listatarefa classes -Dsonar.sources=/var/lib/jenkins/workspace/listaTarefasCI/ -Dsonar.login=4da5650dddb05e04cab33180e8b454b11ffa0976 -Dsonar.analysis.mode=preview"                
             }
         }
