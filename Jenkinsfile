@@ -38,7 +38,6 @@ pipeline {
                     // some block
                     sonar.projectKey=listatarefa
                     sonar.sources=${WORKSPACE}/listaTarefasCI/
-                    sonar.login=4da5650dddb05e04cab33180e8b454b11ffa0976
                 }
 
             }
