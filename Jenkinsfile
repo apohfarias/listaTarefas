@@ -35,15 +35,7 @@ pipeline {
                     bash -c "source venv_listaTarefas/bin/activate ; ${WORKSPACE}/venv_listaTarefas/bin/python manage.py &"
                 '''
                 }
-                steps {
-                withSonarQubeEnv {
-                    // some block
-                    sonar.projectKey=listatarefa &&
-                    sonar.sources=${WORKSPACE}/listaTarefasCI/ &&
-                    sonar.host.url=${172.16.91.190:9000} &&
-                    sonar.login=4da5650dddb05e04cab33180e8b454b11ffa0976
-                }
-            }
+
         } 
         stage('BuildDocker') {
             steps {
