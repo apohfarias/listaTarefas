@@ -56,7 +56,6 @@ class NewListTest(TestCase):
 	# 	self.assertTemplateUsed(response, 'home.html')
 	# 	expected_error = escape("Itens da lista não podem estar em branco!!!")
 	# 	self.assertContains(response, expected_error)		
-
 		
 class ListViewTest(TestCase):
 
