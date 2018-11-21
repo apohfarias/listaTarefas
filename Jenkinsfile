@@ -32,9 +32,9 @@ pipeline {
         stage('Sonarqube analysis') {
             steps {
                 script {
-                    scannerHome = tool 'SonarScanner';
+                    scannerHome = tool 'SonarQubeScanner';
                 }
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('SonarQubeServer') {
                     sh 'mvn clean package sonar:sonar'
                 }
             }
