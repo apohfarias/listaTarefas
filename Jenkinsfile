@@ -36,7 +36,7 @@ pipeline {
                 }
                 withSonarQubeEnv('SonarQubeServer') {
                     //sh 'mvn clean package sonar:sonar'
-                    
+
                 }
             }
         }
@@ -52,14 +52,16 @@ pipeline {
         stage('BuildDocker') {
             steps {
                 sh '''
-                    ls //docker build -t apptest:latest .
+                    ls 
+                    //docker build -t apptest:latest .
                 '''
             }
         } 
     stage('PushDockerImage') {
             steps {
                 sh '''
-                    ls //docker tag apptest:latest apohfarias/apptest:latest
+                    ls 
+                    //docker tag apptest:latest apohfarias/apptest:latest
                     //docker push apohfarias/apptest:latest
                     //docker rmi apptest:latest
                 '''
