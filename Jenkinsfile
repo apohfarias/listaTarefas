@@ -35,7 +35,8 @@ pipeline {
                     scannerHome = tool 'SonarQubeScanner';
                 }
                 withSonarQubeEnv('SonarQubeServer') {
-                    sh 'mvn clean package sonar:sonar'
+                    //sh 'mvn clean package sonar:sonar'
+                    
                 }
             }
         }
