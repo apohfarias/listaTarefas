@@ -53,7 +53,7 @@ pipeline {
             steps {
                 sh '''
                     ls 
-                    //docker build -t apptest:latest .
+                   
                 '''
             }
         } 
@@ -61,9 +61,7 @@ pipeline {
             steps {
                 sh '''
                     ls 
-                    //docker tag apptest:latest apohfarias/apptest:latest
-                    //docker push apohfarias/apptest:latest
-                    //docker rmi apptest:latest
+                   
                 '''
             }
         } 
