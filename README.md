@@ -1,7 +1,7 @@
-## Lista de Tarefas
+# Lista de Tarefas
 Projeto realizado para uso no ambiente do TCC
 
-# Tecnologias Usadas:
+## Tecnologias Usadas:
 * Docker
 * Jenkins
 * Python 3.6
